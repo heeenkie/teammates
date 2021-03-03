@@ -28,6 +28,9 @@ public class InstructorCoursesPage extends AppPage {
     @FindBy(id = "new-course-id")
     private WebElement courseIdTextBox;
 
+    @FindBy(id = "copy-course-id")
+    private WebElement copyCourseIdTextBox;
+
     @FindBy(id = "new-course-name")
     private WebElement courseNameTextBox;
 
@@ -36,6 +39,9 @@ public class InstructorCoursesPage extends AppPage {
 
     @FindBy(id = "btn-save-course")
     private WebElement submitButton;
+
+    @FindBy(id = "btn-confirm-copy-course")
+    private WebElement confirmCopyCourseButton;
 
     @FindBy(id = "active-courses-table")
     private WebElement activeCoursesTable;
@@ -129,6 +135,17 @@ public class InstructorCoursesPage extends AppPage {
         selectNewTimeZone(newCourse.getTimeZone().toString());
 
         click(submitButton);
+    }
+
+    public void copyCourse(CourseAttributes copiedCourse, CourseAttributes newCourse) {
+        String originalCourseId = copiedCourse.getId();
+        WebElement otherActionButton = getOtherActionsButton(originalCourseId);
+        click(otherActionButton);
+        click(getCopyButton(originalCourseId));
+        fillTextBox(copyCourseIdTextBox,newCourse.getId());
+        click(confirmCopyCourseButton);
+
+        waitUntilAnimationFinish();
     }
 
     public void showStatistics(String courseId) {
@@ -288,6 +305,11 @@ public class InstructorCoursesPage extends AppPage {
         return getArchiveButtonInRow(courseRowNumber);
     }
 
+    private WebElement getCopyButton(String courseId) {
+        int courseRowNumber = getRowNumberOfCourse(courseId);
+        return getCopyButtonInRow(courseRowNumber);
+    }
+
     private WebElement getMoveToRecycleBinButton(String courseId) {
         int courseRowNumber = getRowNumberOfCourse(courseId);
         return getMoveToRecycleBinButtonInRow(courseRowNumber);
@@ -391,6 +413,11 @@ public class InstructorCoursesPage extends AppPage {
     private WebElement getArchiveButtonInRow(int rowId) {
         By archiveButton = By.id("btn-archive-" + rowId);
         return browser.driver.findElement(archiveButton);
+    }
+
+    private WebElement getCopyButtonInRow(int rowId) {
+        By copyButton = By.id("btn-copy-" + rowId);
+        return browser.driver.findElement(copyButton);
     }
 
     private WebElement getMoveToRecycleBinButtonInRow(int rowId) {
