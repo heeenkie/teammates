@@ -74,6 +74,19 @@ public class InstructorCoursesPageE2ETest extends BaseE2ETestCase {
         coursesPage.verifyActiveCoursesDetails(activeCoursesWithNewCourse);
         verifyPresentInDatastore(newCourse);
 
+        ______TS("copy course");
+        CourseAttributes originalCourse = courses[0];
+        CourseAttributes copiedCourse = CourseAttributes.builder(originalCourse.getId() + "copy")
+                .withName(originalCourse.getName())
+                .withTimezone(originalCourse.getTimeZone())
+                .build();
+
+        CourseAttributes[] activeCoursesWithCopiedCourse = {originalCourse, copiedCourse};
+        coursesPage.copyCourse(originalCourse, copiedCourse);
+        verifyPresentInDatastore(copiedCourse);
+        coursesPage.verifyActiveCoursesDetails(activeCoursesWithCopiedCourse);
+        coursesPage.verifyNumActiveCourses(2);
+
         ______TS("archive course");
         CourseAttributes[] archivedCoursesWithNewCourse = { newCourse, courses[1] };
         coursesPage.archiveCourse(newCourse.getId());
