@@ -13,7 +13,7 @@ exports[`CopyCourseModalComponent should snap with default fields 1`] = `
       class="modal-title"
     >
       <div>
-        Copy this course with sessions
+        Copy course and its sessions
       </div>
     </h5>
     <button
@@ -39,7 +39,7 @@ exports[`CopyCourseModalComponent should snap with default fields 1`] = `
         >
           <label>
             <b>
-              Id for copied course
+              Choose new Course ID
             </b>
           </label>
           <input
@@ -88,7 +88,7 @@ exports[`CopyCourseModalComponent should snap with some course id 1`] = `
       class="modal-title"
     >
       <div>
-        Copy this course with sessions
+        Copy course and its sessions
       </div>
     </h5>
     <button
@@ -114,7 +114,7 @@ exports[`CopyCourseModalComponent should snap with some course id 1`] = `
         >
           <label>
             <b>
-              Id for copied course
+              Choose new Course ID
             </b>
           </label>
           <input
