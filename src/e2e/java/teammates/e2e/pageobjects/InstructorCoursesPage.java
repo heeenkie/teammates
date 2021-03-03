@@ -142,7 +142,7 @@ public class InstructorCoursesPage extends AppPage {
         WebElement otherActionButton = getOtherActionsButton(originalCourseId);
         click(otherActionButton);
         click(getCopyButton(originalCourseId));
-        fillTextBox(copyCourseIdTextBox,newCourse.getId());
+        fillTextBox(copyCourseIdTextBox, newCourse.getId());
         click(confirmCopyCourseButton);
 
         waitUntilAnimationFinish();
