@@ -299,7 +299,7 @@ export class InstructorCoursesPageComponent implements OnInit {
   }
 
   /**
-   * Gets a CourseModel from courseID
+   * Gets a CourseModel from course
    */
   private getCourseModelFromCourse(course: Course): CourseModel{
     let canModifyCourse: boolean = false;
